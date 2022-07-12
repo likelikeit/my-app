@@ -1,17 +1,84 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { createContext, useContext, useReducer, useRef, useState } from 'react'
+import ReactDOM from 'react-dom'
+import Tabs from './Tab';
+import TestComponent from './Demo'
+import { CountStateContext, CountDispatchContext } from './Context';
+import Counter from './Counter';
+import CounterState from './CounterState'
+const { TabPane } = Tabs;
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+// export const Context = createContext(null)
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// export function useFunction(fn) {
+//   const { current } = React.useRef({ fn, result: undefined });
+//   current.fn = fn;
+//   if (!current.result) {
+//     current.result = ((...args) => current.fn.call(null, ...args));
+//   }
+//   return current.result;
+// }
+
+
+function CountProvider({ children }) {
+  const [value, dispatch] = useState(1);
+  return (
+    <CountDispatchContext.Provider value={dispatch}>
+      <CountStateContext.Provider value={value}>
+        {children}
+      </CountStateContext.Provider>
+    </CountDispatchContext.Provider>
+  )
+}
+
+
+// function RenderHighlight({ str, search }) {
+//   if (!search) return str;
+//   const reg = new RegExp(search, 'ig');
+//   const splitstrs = str.split(reg);
+//   const matchstrs = str.match(reg);
+//   console.log(splitstrs, matchstrs,)
+//   return (
+//     <React.Fragment>
+//       {
+//         matchstrs.map((_, index) => {
+//           return (
+//             <React.Fragment key={index}>
+//               <span>{splitstrs[index]}</span>
+//               <span style={{ color: 'red' }}>{matchstrs[index]}</span>
+//             </React.Fragment>
+//           )
+//         })
+//       }
+//       <span>
+//         {splitstrs[splitstrs.length - 1] || ''}
+//       </span>
+//     </React.Fragment>
+//   )
+// };
+
+function ParentComponent() {
+  const [value, dispatch] = useState(1);
+  const fn2 = () => { dispatch(prev => prev + 1) }
+  // const [value, render] = useReducer(() => ({}))
+  // const ref = useRef('test');
+  return (
+    <>
+      {/* <CountProvider> */}
+      <Counter dispatch={fn2} />
+      <CounterState value={value} />
+      {/* </CountProvider> */}
+
+      {/* <button onClick={render}>{'oops..'}</button>
+      <Tabs ref={ref}>
+        <TabPane />
+      </Tabs> */}
+    </>
+
+  )
+}
+
+
+
+
+
+ReactDOM.render(<ParentComponent />, document.getElementById('root'));

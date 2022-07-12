@@ -1,0 +1,158 @@
+{
+  "outputParams": {},
+  "inputParams": [
+    {
+      "controlTypeProps": {
+        "isEdit": true,
+        "type": "number",
+        "required": true
+      },
+      "formKey": "datasourceIdShow",
+      "label": {
+        "en": "Datasource",
+        "zh-cn": "数据源"
+      },
+      "isVisible": true,
+      "type": "dbSourceSelect"
+    },
+    {
+      "controlTypeProps": {
+        "isEdit": true,
+        "type": "input",
+        "required": true
+      },
+      "formKey": "storedProcedureName",
+      "label": {
+        "en": "Stored procedure name",
+        "zh-cn": "存储过程名称"
+      },
+      "isVisible": true,
+      "type": "input"
+    },
+    {
+      "label": {
+        "zh-cn": "参数",
+        "en": "arguments"
+      },
+      "formKey": "arguments",
+      "type": "form",
+      "isVisible": true,
+      "controlTypeProps": {
+        "isEdit": true,
+        "required": true,
+        "columns": [
+          {
+            "formKey": "argumentName",
+            "label": {
+              "en": "argumentName",
+              "zh-cn": "名称"
+            },
+            "isVisible": true,
+            "type": "dynamicSelect",
+            "controlTypeProps": {
+              "isEdit": true,
+              "required": false
+            }
+          },
+          {
+            "formKey": "condition",
+            "label": {
+              "en": "direction",
+              "zh-cn": "方向"
+            },
+            "isVisible": true,
+            "type": "select",
+            "controlTypeProps": {
+              "isEdit": false,
+              "required": false,
+              "options": [
+                {
+                  "label": {
+                    "en": "IN",
+                    "zh-cn": "IN"
+                  },
+                  "value": "IN"
+                }
+              ]
+            }
+          },
+          {
+            "formKey": "type",
+            "label": {
+              "en": "type",
+              "zh-cn": "类型"
+            },
+            "isVisible": true,
+            "type": "select",
+            "controlTypeProps": {
+              "isEdit": true,
+              "required": false,
+              "options": [
+                {
+                  "label": {
+                    "en": "BigNumber",
+                    "zh-cn": "BigNumber"
+                  },
+                  "value": "BigNumber"
+                },
+                {
+                  "label": {
+                    "en": "Binary",
+                    "zh-cn": "Binary"
+                  },
+                  "value": "Binary"
+                },
+                {
+                  "label": {
+                    "en": "Boolean",
+                    "zh-cn": "Boolean"
+                  },
+                  "value": "Boolean"
+                },
+                {
+                  "label": {
+                    "en": "Date",
+                    "zh-cn": "Date"
+                  },
+                  "value": "Date"
+                },
+                {
+                  "label": {
+                    "en": "Integer",
+                    "zh-cn": "Integer"
+                  },
+                  "value": "Integer"
+                },
+                {
+                  "label": {
+                    "en": "Number",
+                    "zh-cn": "Number"
+                  },
+                  "value": "Number"
+                },
+                {
+                  "label": {
+                    "en": "String",
+                    "zh-cn": "String"
+                  },
+                  "value": "String"
+                },
+                {
+                  "label": {
+                    "en": "Timestamp",
+                    "zh-cn": "Timestamp"
+                  },
+                  "value": "Timestamp"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "pluginParams": {
+    "name": "ExecSQL",
+    "class": "com.proinnova.businessflow.logic.kettle.execsql.ExecSQL"
+  }
+}
